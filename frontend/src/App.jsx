@@ -1,15 +1,25 @@
+import Navbar from "./components/Navbar";
+import TicketCard from "./components/TicketCard";
+
 function App() {
   return (
     <div>
-      <h1>AI Customer Support Ticket Assistant</h1>
+      <Navbar />
 
-      <p>Developed by Dinesh</p>
+      <TicketCard
+        title="Login Issue"
+        status="Open"
+      />
 
+      <TicketCard
+        title="Payment Failed"
+        status="Closed"
+      />
 
-
-      <p>
-       This application helps users create support tickets and interact with an AI assistant.
-      </p>
+      <TicketCard
+        title="Bug Report"
+        status="In Progress"
+      />
     </div>
   );
 }
