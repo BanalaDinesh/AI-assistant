@@ -1,35 +1,34 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-from app.schemas.login import LoginRequest
+from app.database import Base, engine
+from app.database import SessionLocal
+from app.models.user import User
+from app.schemas.auth import RegisterRequest
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173"
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
+Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def home():
+    return {"message": "Backend Running"}
+
+@app.post("/register")
+def register(data: RegisterRequest):
+
+    db = SessionLocal()
+
+    user = User(
+        name=data.name,
+        email=data.email,
+        password=data.password
+    )
+
+    db.add(user)
+
+    db.commit()
+
+    db.close()
+
     return {
-        "message": "Welcome"
-    }
-
-
-@app.post("/login")
-def login(request: LoginRequest):
-
-    print(request.email)
-
-    print(request.password)
-
-    return {
-        "message": "Login Successful"
+        "message": "User Registered Successfully"
     }
