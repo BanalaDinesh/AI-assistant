@@ -1,27 +1,7 @@
-import Navbar from "./components/Navbar";
-import TicketCard from "./components/TicketCard";
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <div>
-      <Navbar />
-
-      <TicketCard
-        title="Login Issue"
-        status="Open"
-      />
-
-      <TicketCard
-        title="Payment Failed"
-        status="Closed"
-      />
-
-      <TicketCard
-        title="Bug Report"
-        status="In Progress"
-      />
-    </div>
-  );
+  return <Login />;
 }
 
 export default App;
