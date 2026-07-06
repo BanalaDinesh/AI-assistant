@@ -1,16 +1,40 @@
 import { useState } from "react";
+import api from "../services/api";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    function handleLogin() {
-        if (email === "" || password === "") {
-            alert("Please fill all fields");
 
+    async function handleLogin() {
+
+        if (email === "" || password === "") {
+            alert("Required fields");
             return;
         }
 
-        alert("Login Successful");
+        try {
+
+            const response = await api.post("/login", {
+
+                email,
+                password
+
+            });
+
+            console.log(response.data);
+
+            alert(response.data.message);
+
+        }
+
+        catch (error) {
+
+            console.log(error);
+
+            alert("Login Failed");
+
+        }
+
     }
 
     return (
