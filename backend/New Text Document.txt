@@ -1,0 +1,7 @@
+APP_NAME=AI Ticket Assistant
+
+DATABASE_URL=sqlite:///ticket_assistant.db
+
+SECRET_KEY=my_super_secret_key
+
+FRONTEND_URL=http://localhost:5173
